@@ -1,6 +1,7 @@
 package com.sdw.soft.service;
 
 import com.sdw.soft.dao.UserDao;
+import com.sdw.soft.meta.Address;
 import com.sdw.soft.meta.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private AddressService addressService;
 
     @Autowired
     private PlatformTransactionManager transactionManager;
@@ -117,6 +121,11 @@ public class UserService {
             e.printStackTrace();
             transactionManager.rollback(transactionStatus);
         }
+    }
 
+    @Transactional
+    public void addAndAsync(User user, Address address) {
+        userDao.addUser(user);
+        addressService.addAddress(address);
     }
 }

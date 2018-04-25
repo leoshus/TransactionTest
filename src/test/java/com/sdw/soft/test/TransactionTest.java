@@ -1,5 +1,6 @@
 package com.sdw.soft.test;
 
+import com.sdw.soft.meta.Address;
 import com.sdw.soft.meta.User;
 import com.sdw.soft.service.UserService;
 import org.junit.Before;
@@ -69,5 +70,15 @@ public class TransactionTest {
     public void testRequiredAndRequiresNewWithManual() {
         user.setUserName("required");
         userService.insertRequiredAndRequiresNewWithManual(user);
+    }
+
+
+    @Test
+    public void testAddAndAsync() {
+        user.setUserName("addAsync");
+        Address address = new Address();
+        address.setUserId(Long.valueOf(12));
+        address.setAddress("address");
+        userService.addAndAsync(user, address);
     }
 }

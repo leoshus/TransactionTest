@@ -19,6 +19,9 @@
     <!-- 基本共同服务配置 -->
     <context:annotation-config />
 
+    <task:executor id="myExecutor" pool-size="10"/>
+    <task:annotation-driven executor="myExecutor"/>
+
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 
